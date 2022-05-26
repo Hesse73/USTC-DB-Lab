@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Welcome!</title>
+    <!-- Bootstrap CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/circular-std/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
+    <script src="{% static 'assets/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'assets/vendor/slimscroll/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'assets/libs/js/main-js.js' %}"></script>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href=".">BankSys</a>
+            </nav>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper" style="margin-left: 0px;">
+            <div class="container-fluid dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Welcome to our bank database management system!</h2>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader -->
+                <!-- ============================================================== -->
+                <div class="offset-xl-1 col-xl-10">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
+                            <div class="section-block">
+                            <h3>数据管理服务：</h3>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-header bg-primary text-center p-3 ">
+                                    <h4 class="mb-0 text-white">Client Manage</h4>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h1 class="mb-1">客户管理</h1>
+                                </div>
+                                <div class="card-body border-top">
+                                    <ul class="list-unstyled bullet-check font-14">
+                                        <li>提供客户所有信息的增、删、改、查功能；</li>
+                                        <li>提供关联信息检测防止误删的功能。</li>
+                                    </ul>
+                                    <a href="client/" class="btn btn-outline-secondary btn-block btn-lg">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-header bg-primary text-center p-3 ">
+                                    <h4 class="mb-0 text-white">Account Manage</h4>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h1 class="mb-1">账户管理</h1>
+                                </div>
+                                <div class="card-body border-top">
+                                    <ul class="list-unstyled bullet-check font-14">
+                                        <li>提供账户开户、销户、修改、查询功能；</li>
+                                        <li>支持储蓄账户和支票账户。</li>
+                                    </ul>
+                                    <a href="account/" class="btn btn-outline-secondary btn-block btn-lg">Get
+                                        Started</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-header bg-primary text-center p-3 ">
+                                    <h4 class="mb-0 text-white">Loan Manage</h4>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h1 class="mb-1">贷款管理</h1>
+                                </div>
+                                <div class="card-body border-top">
+                                    <ul class="list-unstyled bullet-check font-14">
+                                        <li>提供贷款信息的增、删、查功能；</li>
+                                        <li>提供贷款分批发放功能;</li>
+                                    </ul>
+                                    <a href="loan_manage/" class="btn btn-outline-secondary btn-block btn-lg">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="offset-xl-1 col-xl-10">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
+                            <div class="section-block">
+                            <h3>银行数据业务统计:</h3>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-header bg-info text-center p-3 ">
+                                    <h4 class="mb-0 text-white">Business Statistics</h4>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h1 class="mb-1">业务统计</h1>
+                                </div>
+                                <div class="card-body border-top">
+                                    <ul class="list-unstyled arrow font-14">
+                                        <li>按业务分类和时间统计各支行的业务总金额和用户数；</li>
+                                        <li>精心设计的数据展示平台。</li>
+                                    </ul>
+                                    <a href="statistics/" class="btn btn-outline-secondary btn-block btn-lg">Get
+                                        Started</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            Template designed by <a href="https://github.com/puikinsh/">Aigars Silkalns</a>.
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                                <a href="http://staff.ustc.edu.cn/~jpq/courses/db.html">About</a>
+                                <a href="https://github.com/puikinsh/concept">Support</a>
+                                <a href="mailto:huangkx@mail.ustc.edu.cn">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %}
+    <script>alert("{{ message }}")</script> {% endif %}
+    {% endfor %}
+    {% endif %}
+</body>
+
+</html>

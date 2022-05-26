@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>用户管理</title>
+    <!-- Bootstrap CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--<link rel="stylesheet" href="{% static 'assets/vendor/fonts/circular-std/style.css' %}">-->
+    <link rel="stylesheet" href="{% static 'assets/libs/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
+    <script src="{% static 'assets/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'assets/vendor/slimscroll/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'assets/vendor/parsley/parsley.js' %}"></script>
+    <script src="{% static 'assets/libs/js/main-js.js' %}"></script>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+       <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="../">BankSys</a>
+            </nav>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Data Manage
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Client Manage <span class="badge badge-success">6</span></a>
+                                <div id="submenu-1" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../client">用户管理</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-address-card"></i>Account Manage <span class="badge badge-success">6</span></a>
+                                <div id="submenu-2" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../account">账户管理</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="far fa-money-bill-alt"></i>Loan Manage <span class="badge badge-success">6</span></a>
+                                <div id="submenu-3" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../loan_manage">贷款管理</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../loan_issue">贷款发放</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-divider">
+                                Business Manage
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="far fa-chart-bar"></i>Business Statistics <span class="badge badge-success">6</span></a>
+                                <div id="submenu-4" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../statistics">业务统计</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Client Manage - Add/Query/Delete/Modify</h2>
+                            <hr>
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.tags %}
+                                {% if message.tags == 'error'%}
+                                <div id='alert' class="alert alert-danger" role="alert">
+                                    {{ message }}
+                                    <a style="float: right;cursor: pointer;" onclick="document.getElementById('alert').remove()" >×</a>
+                                </div>
+                                {% endif %}
+                                {% if message.tags == 'info'%}
+                                <div id='alert' class="alert alert-primary" role="alert">
+                                    {{ message }}
+                                    <a style="float: right;cursor: pointer;" onclick="document.getElementById('alert').remove()" >×</a>
+                                </div>
+                                {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-regular">
+                    <ul class="nav nav-tabs " id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link{% if not view_change %} active{% endif %}" id="add-tab" data-toggle="tab" href="#add" role="tab" aria-controls="add" aria-selected="{% if not view_change %}true{% else %}false{% endif %}"><b>添加用户</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link{% if view_change %} active{% endif %}" id="change-tab" data-toggle="tab" href="#change" role="tab" aria-controls="change" aria-selected="{% if view_change %}true{% else %}false{% endif %}"><b>查询/修改/删除用户</b></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade{% if not view_change %} show active{% endif %}" id="add" role="tabpanel" aria-labelledby="add-tab">
+                            <p class ="lead">填写客户信息，以创建客户到银行数据库中:</p>
+                                <form id="addForm" data-parsley-validate="" novalidate="" method="post" action=".">
+                                    <div class="form-group row">
+                                        <label class="col-12 col-sm-3 col-form-label text-sm-right">身份证号</label>
+                                        <div class="col-12 col-sm-8 col-lg-6">
+                                            <input name="ID_card" type="text" required="" data-parsley-length="[18,18]" placeholder="18位身份证号码" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12 col-sm-3 col-form-label text-sm-right">客户姓名</label>
+                                        <div class="col-12 col-sm-8 col-lg-6">
+                                            <input name="name" type="text" required="" data-parsley-maxlength="100" placeholder="客户姓名" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12 col-sm-3 col-form-label text-sm-right">手机号码</label>
+                                        <div class="col-12 col-sm-8 col-lg-6">
+                                            <input name="phone" type="text" required="" data-parsley-pattern="[0-9]{11}" placeholder="11位手机号码" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12 col-sm-3 col-form-label text-sm-right">客户地址</label>
+                                        <div class="col-12 col-sm-8 col-lg-6">
+                                            <input name="address" type="text" required="" data-parsley-maxlength="200" placeholder="客户地址" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12 col-sm-3 col-form-label text-sm-right">联系人姓名</label>
+                                        <div class="col-12 col-sm-8 col-lg-6">
+                                            <input name="c_name" type="text" required="" data-parsley-maxlength="100" placeholder="联系人姓名" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12 col-sm-3 col-form-label text-sm-right">联系人手机号</label>
+                                        <div class="col-12 col-sm-8 col-lg-6">
+                                            <input name="c_phone" type="text" required="" data-parsley-pattern="[0-9]{11}" placeholder="11位手机号码" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12 col-sm-3 col-form-label text-sm-right">联系人邮箱</label>
+                                        <div class="col-12 col-sm-8 col-lg-6">
+                                            <input name="c_email" type="text" required="" data-parsley-type="email" data-parsley-maxlength="100" placeholder="邮箱" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12 col-sm-3 col-form-label text-sm-right">联系人关系</label>
+                                        <div class="col-12 col-sm-8 col-lg-6">
+                                            <input name="c_relation" type="text" required="" data-parsley-maxlength="20" placeholder="联系人与客户的关系" class="form-control">
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="function" value="add">
+                                    <div class="form-group row text-right">
+                                        <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                            <button type="submit" class="btn btn-space btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                        </div>
+                        <div class="tab-pane fade{% if view_change %} show active{% endif %}" id="change" role="tabpanel" aria-labelledby="change-tab">
+                            <h3>客户查询 & 修改/删除</h3>
+                            <p>不管是查询还是修改、删除，都需要先通过查询来找到客户： </p>
+                            <form id="queryForm" data-parsley-validate="" novalidate="" method="post" action=".">
+                                <div class="form-group">
+                                    <label class="col-form-label">请输入身份证号</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-append be-addon">
+                                            <button type="button" id="optional_btn" onclick="alter_query()" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="" data-original-title="显示所有属性">高级查询</button>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        </div>
+                                        <input name="ID_card" id="query_ID_card" type="text" data-parsley-length="[18,18]" placeholder="18位身份证号码" class="form-control">
+                                        <input type="hidden" name="function" value="query">
+                                    </div>
+                                </div>
+                                <div id="optional-name" hidden="" class="form-group">
+                                    <label class="col-form-label">客户姓名</label>
+                                    <input name="name" type="text" data-parsley-maxlength="100" placeholder="客户姓名" class="form-control">
+                                </div>
+                                <div id="optional-phone" hidden="" class="form-group">
+                                    <label class="col-form-label">手机号码</label>
+                                    <input name="phone" type="text" data-parsley-pattern="[0-9]{11}" placeholder="11位手机号码" class="form-control">
+                                </div>
+                                <div id="optional-address" hidden="" class="form-group">
+                                    <label class="col-form-label">客户地址</label>
+                                    <input name="address" type="text" data-parsley-maxlength="200" placeholder="客户地址" class="form-control">
+                                </div>
+                                <div id="optional-c_name" hidden="" class="form-group">
+                                    <label class="col-form-label">联系人姓名</label>
+                                    <input name="c_name" type="text" data-parsley-maxlength="100" placeholder="联系人姓名" class="form-control">
+                                </div>
+                                <div id="optional-c_phone" hidden="" class="form-group">
+                                    <label class="col-form-label">联系人手机号</label>
+                                    <input name="c_phone" type="text" data-parsley-pattern="[0-9]{11}" placeholder="11位手机号码" class="form-control">
+                                </div>
+                                <div id="optional-c_email" hidden="" class="form-group">
+                                    <label class="col-form-label">联系人邮箱</label>
+                                    <input name="c_email" type="text" data-parsley-type="email" data-parsley-maxlength="100" placeholder="邮箱" class="form-control">
+                                </div>
+                                <div id="optional-c_relation" hidden="" class="form-group">
+                                    <label class="col-form-label">联系人关系</label>
+                                    <input name="c_relation" type="text" data-parsley-maxlength="20" placeholder="联系人与客户的关系" class="form-control">
+                                </div>
+                            </form>
+                            {% if result %}
+                            <hr>
+                            <h3>查询结果如下，你可以批量选取客户进行删除，或者在表格内修改值并提交（也需要选取）：</h3>
+                                <table class="table table-bordered" id="resultTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Select</th>
+                                            <th>ID_card</th>
+                                            <th>name</th>
+                                            <th>phone</th>
+                                            <th>address</th>
+                                            <th>c_name</th>
+                                            <th>c_phone</th>
+                                            <th>c_email</th>
+                                            <th>c_relation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for obj_dict in result %}
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" onclick="currID = this.parentElement.parentElement.parentElement.cells[1].textContent;if(selectedIDs.has(currID)){selectedIDs.delete(currID);}else{selectedIDs.add(currID);}ID2idx[currID]=this.parentElement.parentElement.parentElement.rowIndex;" class="custom-control-input">
+                                                    <span class="custom-control-label"></span>
+                                                </label>
+                                            </td>
+                                            {% for key,value in obj_dict.items %}
+                                                {% if key == 'ID_card' %}
+                                                    <td contenteditable="false">{{value}}</td>
+                                                {% else %}
+                                                    <td contenteditable="true">{{value}}</td>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tr>
+                                        {% endfor%}
+                                    </tbody>
+                                </table>
+                                <a class="btn btn-brand btn-block" style="margin-top: 10px;color: #2e2f39;" onclick="resultModify();">修改</a>
+                                <a class="btn btn-secondary btn-block" style="margin-top: 5px;color: #fff;" onclick="resultDelete();">删除</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="mode_flag" hidden="" >upper</div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <script>
+        function alter_query(){
+            flag = document.getElementById('mode_flag');
+            mode = flag.textContent;
+            if(mode == 'upper'){
+                document.getElementById('optional-name').removeAttribute('hidden');
+                document.getElementById('optional-phone').removeAttribute('hidden');
+                document.getElementById('optional-address').removeAttribute('hidden');
+                document.getElementById('optional-c_name').removeAttribute('hidden');
+                document.getElementById('optional-c_phone').removeAttribute('hidden');
+                document.getElementById('optional-c_email').removeAttribute('hidden');
+                document.getElementById('optional-c_relation').removeAttribute('hidden');
+                btn = document.getElementById('optional_btn');
+                btn.textContent = '简易查询';
+                btn.setAttribute('data-original-title','仅使用主键查询');
+                flag.textContent = 'lower';
+            }
+            else if(mode=='lower'){
+                document.getElementById('optional-name').setAttribute('hidden',0);
+                document.getElementById('optional-phone').setAttribute('hidden',0);
+                document.getElementById('optional-address').setAttribute('hidden',0);
+                document.getElementById('optional-c_name').setAttribute('hidden',0);
+                document.getElementById('optional-c_phone').setAttribute('hidden',0);
+                document.getElementById('optional-c_email').setAttribute('hidden',0);
+                document.getElementById('optional-c_relation').setAttribute('hidden',0);
+                btn = document.getElementById('optional_btn');
+                btn.textContent = '高级查询';
+                btn.setAttribute('data-original-title','显示所有属性');
+                flag.textContent = 'upper';
+            }
+        };
+    </script>
+    {% if result %}
+    <script>
+        if(document.getElementById('mode_flag').textContent == 'lower'){
+            alter_query();
+        }
+    </script>
+    <script>
+        let selectedIDs = new Set([]);
+        var ID2idx = {};
+        function HtmlEncode(s)
+        {
+            return s.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+        }
+        function resultModify(){
+            if(selectedIDs.size > 0){
+            let table = document.getElementById('resultTable');
+            var outArray = [];
+            for (const ID_card of Array.from(selectedIDs)) {
+                const idx = ID2idx[ID_card];
+                let row = table.rows[idx];
+                var clt = {"ID_card":row.cells[1].textContent,
+                            "name":row.cells[2].textContent,
+                            "phone":row.cells[3].textContent,
+                            "address":row.cells[4].textContent,
+                            "c_name":row.cells[5].textContent,
+                            "c_phone":row.cells[6].textContent,
+                            "c_email":row.cells[7].textContent,
+                            "c_relation":row.cells[8].textContent};
+                outArray.push(JSON.stringify(clt));
+            }
+            var url = '.';
+            var form = $('<form action="' + url + '" method="post">' +
+            '<input type="text" name="modifiedData" hidden="" value="[' + HtmlEncode(outArray.join(',')) + ']" />' +
+            '<input type="hidden" name="function" value="modify">' +
+            '</form>');
+            $('body').append(form);
+            form.submit();}
+        };
+        function resultDelete(){
+            if(selectedIDs.size > 0){
+                var url = '.';
+                var form = $('<form action="' + url + '" method="post">' +
+                '<input type="text" name="selectedIDs" hidden="" value="' + Array.from(selectedIDs).join(",") + '" />' +
+                '<input type="hidden" name="function" value="delete">' +
+                '</form>');
+                $('body').append(form);
+                form.submit();
+            }
+        };
+    </script>
+   {% endif %}
+</body>
+
+ 
+</html>
